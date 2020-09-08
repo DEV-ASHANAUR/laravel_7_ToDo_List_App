@@ -1,0 +1,35 @@
+@media (max-width: 1199px) {	
+
+}
+
+@media (max-width: 991px) {	
+
+}
+
+
+@media (max-width: 767px) {	
+
+	.pull-left, .pull-right{
+		float: none!important;
+		text-align: center!important;
+		display: block!important;
+		margin-left: auto!important;
+		margin-right: auto!important;
+		margin-top: 15px;
+	}
+	.form_head p {
+		padding-bottom: 30px;
+	}	
+	
+}
+
+@media (max-width: 991px) {	
+
+	.form_head h2 {
+		font-size: 25px;
+	}
+	.form_head p {
+		font-size: 15px;
+	}	
+}
+
