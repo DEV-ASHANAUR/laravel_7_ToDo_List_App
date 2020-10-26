@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -21,6 +26,41 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+
+    public function showLoginForm()
+    {
+        //return view('auth.login');
+        return view('newLogin');
+    }
+
+    public function github()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+    public function githubRedirect()
+    {
+        $gituser = Socialite::driver('github')->user();
+        // dd($user);
+        $user = User::firstOrCreate([
+            'email' => $gituser->email
+        ],[
+            'name' => $gituser->name,
+            'password' => Hash::make(Str::random(24))
+        ]);
+        Auth::login($user,true);
+        return redirect()->route('home');
+    }
+
+    // //facebook login
+    // public function fb()
+    // {
+    //     return Socialite::driver('facebook')->redirect();
+    // }
+    // public function fbRedirect()
+    // {
+    //     $fbuser = Socialite::driver('facebook')->user();
+    //     dd($fbuser);
+    // }
     /**
      * Where to redirect users after login.
      *
