@@ -19,15 +19,15 @@ use Illuminate\Support\Facades\Route;
     Route::get('login/github/callback', 'Auth\LoginController@githubRedirect');
 
 
-Route::get('/new-login', function () {
-    return view('newLogin');
-});
-Route::get('/new-register', function () {
-    return view('newRegister'); 
-});
-Route::get('/new-forget', function () {
-    return view('newForget');
-});
+// Route::get('/new-login', function () {
+//     return view('newLogin');
+// });
+// Route::get('/new-register', function () {
+//     return view('newRegister'); 
+// });
+// Route::get('/new-forget', function () {
+//     return view('newForget');
+// });
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,12 +37,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']], function () {
-    
-
-
-
-
-
     Route::get('/index','TodoController@index')->name('todo.index');
     Route::get('/create','TodoController@create')->name('todo.create');
     Route::post('/store','TodoController@store')->name('todo.store');
