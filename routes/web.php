@@ -15,19 +15,9 @@ use Illuminate\Support\Facades\Route;
     // Route::get('login/fb', 'Auth\LoginController@fb');
     // Route::get('login/fb/callback', 'Auth\LoginController@fbRedirect');
 
-    Route::get('login/github', 'Auth\LoginController@github');
-    Route::get('login/github/callback', 'Auth\LoginController@githubRedirect');
+Route::get('login/github', 'Auth\LoginController@github');
+Route::get('login/github/callback', 'Auth\LoginController@githubRedirect');
 
-
-// Route::get('/new-login', function () {
-//     return view('newLogin');
-// });
-// Route::get('/new-register', function () {
-//     return view('newRegister'); 
-// });
-// Route::get('/new-forget', function () {
-//     return view('newForget');
-// });
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,3 +37,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/com/{id}','TodoController@complete')->name('todo.com');
     Route::get('/uncom/{id}','TodoController@uncomplete')->name('todo.uncom');
 });
+
+// SSLCOMMERZ Start
+Route::get('/example1', 'SslCommerzPaymentController@exampleEasyCheckout');
+Route::get('/example2', 'SslCommerzPaymentController@exampleHostedCheckout');
+
+Route::post('/pay', 'SslCommerzPaymentController@index');
+Route::post('/pay-via-ajax', 'SslCommerzPaymentController@payViaAjax');
+
+Route::post('/success', 'SslCommerzPaymentController@success');
+Route::post('/fail', 'SslCommerzPaymentController@fail');
+Route::post('/cancel', 'SslCommerzPaymentController@cancel');
+
+Route::post('/ipn', 'SslCommerzPaymentController@ipn');
+//SSLCOMMERZ END
